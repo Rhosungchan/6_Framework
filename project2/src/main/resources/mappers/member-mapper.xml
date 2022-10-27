@@ -70,13 +70,24 @@
 	<!-- 로그인 -->                                      <!-- resultMap의 id -->
 	<select id="login" parameterType="string" resultMap="member_rm"> 
 	SELECT MEMBER_NO, MEMBER_EMAIL, MEMBER_PW, MEMBER_NICKNAME, MEMBER_TEL,
-       MEMBER_ADDRESS, PROFILE_IMG , AUTHOROITY, 
-       TO_CHAR(ENROLL_DATE, 'YYYY"년" MM"월" DD"일" HH24"시" MI"분" SS"초"') AS ENPOLL_DATE  
+         MEMBER_ADDRESS, PROFILE_IMG , AUTHOROITY, 
+         TO_CHAR(ENROLL_DATE, 'YYYY"년" MM"월" DD"일" HH24"시" MI"분" SS"초"') AS ENPOLL_DATE  
 	FROM "MEMBER"
 	WHERE MEMBER_DEL_FL = 'N'
 	AND MEMBER_EMAIL = #{memberEmail}
 	</select>
 	
+	<!-- 
+	     insert / update / delete는 항상 반영된 행의 개수(int type)가 반환되기 때문에
+       별도의 resultType 지정이 필요 없다. 
+  -->
 	
+	<!-- 회원 가입 -->                <!-- 별칭을 사용해도됨 (별칭 : Member(myBatis.config.xml)  -->
+	<insert id="signUp" parameterType="edu.kh.project.member.model.vo.Member">
+	INSERT INTO "MEMBER"
+	VALUES(SEQ_MEMBER_NO.NEXTVAL, 
+	       #{memberEmail}, #{memberPw}, #{memberNickname}, #{memberTel},
+	       #{memberAddress}, DEFAULT, DEFAULT, DEFAULT, DEFAULT)     
+	</insert>
 	
 </mapper>

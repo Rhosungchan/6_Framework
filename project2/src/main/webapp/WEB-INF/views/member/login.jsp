@@ -11,6 +11,7 @@
     <title>로그인 페이지</title>
 
     <link rel="stylesheet" href="/resources/css/login-style.css">
+    
     <!-- fontawesome 사이트 아이콘 허용 -->
     <script src="https://kit.fontawesome.com/f7459b8054.js" crossorigin="anonymous"></script>
 </head>
@@ -28,11 +29,11 @@
         <form action="/member/login" method="post">
             <section class="input-box">
                 <!-- required 속성 : form태그 제출 시 해당 input 태그에 값이 존재하는 검사  -->
-                <input type="text" name="inputEmail" placeholder="Email" required  value="${cookie.saveId.value}">
+                <input type="text" name="memberEmail" placeholder="Email" required  value="${cookie.saveId.value}">
             </section> 
             <section class="input-box">
                 <!-- required 속성 : form태그 제출 시 해당 input 태그에 값이 존재하는 검사  -->
-                <input type="Email" name="inputPw" placeholder="password" required>
+                <input type="password" name="memberPw" placeholder="password" required>
             </section> 
 
             <button class="login-btn">Login</button>
@@ -40,7 +41,7 @@
             <%-- 쿠키에 saveId가 있는 경우 변수 생성 --%>
             <c:if test="${!empty cookie.saveId.value}">
                 <c:set var="temp" value="checked"/>
-            </c:if>
+            </c:if> 
 
             <div class="saveId-area">
                 <input type="checkbox" name="saveId" id="saveId" ${temp}>
@@ -65,13 +66,13 @@
     <%-- footter --%>
 
 
-    <c:if test="${not empty sessionScope.message}">
+    <c:if test="${not empty message}">
         <script>
-            alert("${sessionScope.message}");
+            alert("${message}");
         </script>
 
         <%-- message 1회 출력 후 session scope에서 삭제 --%>
-        <c:remove var="message" scope="session"/>
+        <c:remove var="message"/>
     </c:if>
 
 </body>
