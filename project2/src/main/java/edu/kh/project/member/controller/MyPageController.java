@@ -36,6 +36,7 @@ public class MyPageController {
 	}
 	
 	// 내 정보 수정 
+	
 	@PostMapping("/info")
 	public String updateInfo(Member inputMember, String[] memberAddress,
 			@SessionAttribute("loginMember") Member loginMember,
