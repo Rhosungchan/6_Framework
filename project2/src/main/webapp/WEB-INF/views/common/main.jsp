@@ -39,16 +39,16 @@
         <section> : 구역을 구분하기 위한 영역
 
         <article> : 본문과 독립된 콘텐츠를 작성하는 영역
-     -->
+    -->
 
-     <main>
+    <main>
         <%-- header.jsp 추가(포함) --%>
         <%-- 
             jsp 액션 태그 중 include 
             - 해당 위치에 page 속성으로 지정된 jsp 파일의 내용이 포함됨
             - jsp파일의 경로는 /webapp 폴더를 기준으로 작성
-         --%>
-     
+        --%>
+
         <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
         <section class="content">
@@ -64,48 +64,55 @@
 				    <%-- 로그인 X인 경우 --%>
 					<c:when test="${empty sessionScope.loginMember}">
 					
-					         <%-- 절대 경로 방식 --%>
-			               <form action="/member/login" name="login-frm" method="POST"> 
+					        <%-- 절대 경로 방식 --%>
+			            <form action="/member/login" name="login-frm" method="POST" onsubmit="return loginValidate()"> 
+
+                            <%-- 
+                                form태그의 submit 이벤트를 취소시키는 방법 1 
+                                인라인 이벤트 모델의 결과로 false를 리턴하면 제출 이벤트가 취소된다.    
+
+                            --%>    
+
 			
-			                   <!-- 아이디, 비밀번호, 로그인 버튼 -->
-			                   <fieldset id="email-pw-area">
-			                       <section>
-			                           <input type="text" name="memberEmail" 
+			                <!-- 아이디, 비밀번호, 로그인 버튼 -->
+			                <fieldset id="email-pw-area">
+			                    <section>
+			                        <input type="text" name="memberEmail" 
 			                            placeholder="이메일" autocomplete="off" value="${cookie.saveId.value}">
                                                                                     <%-- 쿠키 중 saveId에 저장된 값 --%>
 			                            <!--  autocomplete="off" : 자동완성 사용 X -->
-			                           <input type="password" name="memberPw" placeholder="비밀번호">
-			                       </section>
-			       
-			                       <section>
-			                           <!-- type="submit"이 기본값 -->
-			                           <button>로그인</button>
-			                       </section>
-			                   </fieldset>
-			       
-			                   <!--아이디 중복 체크  -->
+			                        <input type="password" name="memberPw" placeholder="비밀번호">
+			                    </section>
+			
+			                    <section>
+			                        <!-- type="submit"이 기본값 -->
+			                        <button>로그인</button>
+			                    </section>
+			                </fieldset>
+			    
+			                <!--아이디 중복 체크  -->
 
-                               <%-- 쿠키에 saveId가 있을 경우 --%>
-                               <c:if test="${!empty cookie.saveId.value}">
+                            <%-- 쿠키에 saveId가 있을 경우 --%>
+                            <c:if test="${!empty cookie.saveId.value}">
                                     <%-- temp 변수 선언  --%>
                                     <c:set var="temp" value="checked"/>
                                     <%-- page scope == page 어디서든 사용 가능
                                                     == if문 나가도 쓸 수 있다. --%>
-                               </c:if>
+                            </c:if>
 
 
-			                   <!-- lavel 태그 내부에 input태그를 작성하면 자동 연결됨 -->
-			                   <label>
-			                       <input type="checkbox" name="saveId" ${temp}> 아이디 저장
-			                   </label>
-			       
-			                   <!-- 회원가입 / IDPW 찾기 -->
-			                   <article id="signUp-find-area">
-			                       <a href="/member/signUp">회원가입</a>
-			                       <span>|</span>
-			                       <a href="#">ID/PW찾기</a>
-			                   </article>
-			               </form>
+                            <!-- lavel 태그 내부에 input태그를 작성하면 자동 연결됨 -->
+                            <label>
+                                <input type="checkbox" id="saveId" name="saveId" ${temp}> 아이디 저장
+                            </label>
+			
+                            <!-- 회원가입 / IDPW 찾기 -->
+                            <article id="signUp-find-area">
+                                <a href="/member/signUp">회원가입</a>
+                                <span>|</span>
+                                <a href="#">ID/PW찾기</a>
+                            </article>
+                        </form>
 					</c:when>
 					
 					
@@ -148,11 +155,12 @@
 
             </section>
         </section>
-     </main>
-     
-     <%-- footer.jsp 포함 --%>
-     <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+    </main>
 
+    <%-- footer.jsp 포함 --%>
+    <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+
+    <script src="/resources/js/main.js"></script>
 </body>
 </html>
 
