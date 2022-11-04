@@ -41,15 +41,15 @@
         <article> : 본문과 독립된 콘텐츠를 작성하는 영역
     -->
 
-    <main>
         <%-- header.jsp 추가(포함) --%>
         <%-- 
             jsp 액션 태그 중 include 
             - 해당 위치에 page 속성으로 지정된 jsp 파일의 내용이 포함됨
             - jsp파일의 경로는 /webapp 폴더를 기준으로 작성
         --%>
-
         <jsp:include page="/WEB-INF/views/common/header.jsp"/>
+
+    <main>
 
         <section class="content">
             <section class="content-1">
