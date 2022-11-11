@@ -53,7 +53,44 @@
 
         <section class="content">
             <section class="content-1">
-            	${loginMember}
+                <div>
+                    <h3>이메일로 회원 정보 조회(AJAX)</h3>
+
+                    이메일 : <input type="text" id="inputEmail">
+                    <button id="selectEmail">조회</button>
+                </div>
+                <div  id="content-1-2">
+                    <h3>10초마다 모든 회원 정보를 조회(AJAX)</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>회원번호</th>
+                                <th>이메일</th>
+                                <th>탈퇴여부</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="tbody">
+                            <tr>
+                                <th>1</th>
+                                <td>user01@kh.or.kr</td>
+                                <td>N</td>
+                            </tr>
+                            <tr class="secession">
+                                <th>2</th>
+                                <td>user02@kh.or.kr</td>
+                                <td>F</td>
+                            </tr>
+                        </tbody>
+
+                        <tfoot>
+                            <tr>
+                                <th>회원 수</th>
+                                <th colspan="2" id="memberCount"></th></th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
             </section>
             <section class="content-2">
 
@@ -160,6 +197,9 @@
     <%-- footer.jsp 포함 --%>
     <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 
+    <%-- jQuery CDN방식으로 추가 --%>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" 
+			integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>	
     <script src="/resources/js/main.js"></script>
 </body>
 </html>

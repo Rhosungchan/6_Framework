@@ -407,7 +407,7 @@ label[for='header-menu-toggle']:hover{ text-decoration: underline; }
 }
 
 /* 로그아웃 버튼 */
- #logout-btn{
+#logout-btn{
     color: gray;
     font-size: 14px;
     font-weight: bold;
@@ -415,23 +415,34 @@ label[for='header-menu-toggle']:hover{ text-decoration: underline; }
 
     padding: 3px 5px;
     border-radius: 10px;
- }
- 
- #logout-btn:hover{
-    color: white;
-    background-color: gray;
- }
+}
 
- #logout-btn:active{
-    transform: scale(0.5);
- }
+#logout-btn:hover{
+color: white;
+background-color: gray;
+}
+
+#logout-btn:active{
+transform: scale(0.5);
+}
 
 .my-info > p {
     margin: 0;
     color: gray;
 }
- /**/
 
+
+#content-1-2{
+    width: 500px;
+    margin: 50px auto;
+}
+
+.secession{
+    background-color: beige;
+}
+.secession > td:first-of-type{
+    text-decoration: line-through;
+}
 
 
 
