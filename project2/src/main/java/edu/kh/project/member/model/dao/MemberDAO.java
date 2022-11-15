@@ -6,37 +6,30 @@ import org.springframework.stereotype.Repository;
 
 import edu.kh.project.member.model.vo.Member;
 
-@Repository  // ÆÛ½Ã½ºÅÏ½º ·¹ÀÌ¾î, ¿µ¼Ó¼º(ÆÄÀÏ,DB)À» °¡Áø Å¬·¡½º + bean µî·Ï
+@Repository // í¼ì‹œìŠ¤í„´ìŠ¤ ë ˆì´ì–´, ì˜ì†ì„±ì„ (íŒŒì¼, DB) ê°€ì§„ í´ë˜ìŠ¤ + bean ë“±ë¡ 
 public class MemberDAO {
 	
-	// DBCP + MyBatis ÀÌ¿ë °´Ã¼ DI(ÀÇÁ¸¼º ÁÖÀÔ)
+	// DBCP + ë§ˆì´ë°”í‹°ìŠ¤ ì´ìš© ê°ì²´ DI(ì˜ì¡´ì„± ì£¼ì…) 
 	@Autowired
 	private SqlSessionTemplate sqlSession;
-	
-	
 
-	/** ·Î±×ÀÎ DAO
+	/** ë¡œê·¸ì¸ DAO
 	 * @param memberEmail
 	 * @return loginMember
 	 */
 	public Member login(String memberEmail) {
 		
-		//     sqlSession.selectOne("¸ÅÆÛÀÌ¸§.ÅÂ±×id", SQLÀÛ¼º ½Ã ÇÊ¿äÇÑ °ª); 
+//		return sqlSession.selectOne("ë§¤í¼ì´ë¦„.íƒœê·¸id", SQL ì‘ì„±ì‹œ í•„ìš”í•œ ê°’);
 		return sqlSession.selectOne("memberMapper.login", memberEmail);
 	}
 
-
-
-	/** È¸¿ø °¡ÀÔ DAO
+	/** íšŒì›ê°€ì… DAO
 	 * @param inputMember
-	 * @return result
+	 * @return
 	 */
 	public int signUp(Member inputMember) {
 		
-		return sqlSession.insert("memberMapper.signUp", inputMember);
-		
+		return sqlSession.insert("memberMapper.signUp",inputMember);
 	}
-
 	
-
 }

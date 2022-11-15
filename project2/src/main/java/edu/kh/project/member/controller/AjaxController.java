@@ -15,37 +15,37 @@ import edu.kh.project.member.model.service.AjaxService;
 import edu.kh.project.member.model.vo.Member;
 
 
-@Controller // ¿äÃ» -> ¾Ë¸ÂÀº ¼­ºñ½º -> °á°ú ¹İÈ¯ -> ¾Ë¸ÂÀº view ÀÀ´ä Á¦¾î + bean µî·Ï 
+@Controller // ìš”ì²­ -> ì•Œë§ì€ ì„œë¹„ìŠ¤ -> ê²°ê³¼ ë°˜í™˜ -> ì•Œë§ì€ view ì‘ë‹µ ì œì–´ + bean ë“±ë¡ 
 public class AjaxController {
 
 	@Autowired
 	private AjaxService service;
 	
-	// ÀÌ¸ŞÀÏ Áßº¹ °Ë»ç 
+	// ì´ë©”ì¼ ì¤‘ë³µ ê²€ì‚¬ 
 	@GetMapping("/emailDupCheck")
-	@ResponseBody // ¹İÈ¯µÇ´Â °ªÀ» jsp °æ·Î°¡ ¾Æ´Ñ °ª ÀÚÃ¼·Î ÀÎ½Ä
+	@ResponseBody // ë°˜í™˜ë˜ëŠ” ê°’ì„ jsp ê²½ë¡œê°€ ì•„ë‹Œ ê°’ ìì²´ë¡œ ì¸ì‹
 	public int emailDupCheck(String memberEmail) {
 		                   // data: {"memberEmail" : memberEmail.value}
 		// System.out.println(memberEmail);
 		
 		int result = service.emailDupCheck(memberEmail);
 		
-		// @ResponseBody ¾î³ëÅ×ÀÌ¼Ç ´öºĞ¿¡
-		// result°¡ View Resolver·Î Àü´ŞµÇÁö ¾Ê°í È£ÃâÇß´ø ajax ÇÔ¼ö·Î ¹İÈ¯µÊ
+		// @ResponseBody ì–´ë…¸í…Œì´ì…˜ ë•ë¶„ì—
+		// resultê°€ View Resolverë¡œ ì „ë‹¬ë˜ì§€ ì•Šê³  í˜¸ì¶œí–ˆë˜ ajax í•¨ìˆ˜ë¡œ ë°˜í™˜ë¨
 		return result;
 	}
 	
 	
-	// ´Ğ³×ÀÓ Áßº¹°Ë»ç 
+	// ë‹‰ë„¤ì„ ì¤‘ë³µê²€ì‚¬ 
 	@GetMapping("/nicknameDupCheck")
-	@ResponseBody // ¹İÈ¯µÇ´Â °ªÀ» jsp °æ·Î°¡ ¾Æ´Ñ °ª ÀÚÃ¼·Î ÀÎ½Ä
+	@ResponseBody // ë°˜í™˜ë˜ëŠ” ê°’ì„ jsp ê²½ë¡œê°€ ì•„ë‹Œ ê°’ ìì²´ë¡œ ì¸ì‹
 	public int nicknameDupCheck(String memberNickname) {
 	
 		int result = service.nicknameDupCheck(memberNickname);
 		return result;
 	}
 	
-	// ÀÌ¸ŞÀÏ·Î È¸¿ø Á¤º¸ Á¶È¸(JSON,GSON È°¿ë)
+	// ì´ë©”ì¼ë¡œ íšŒì› ì •ë³´ ì¡°íšŒ(JSON,GSON í™œìš©)
 	@PostMapping("/selectEmail")
 	@ResponseBody
 	public String selectEmail(String email) {
@@ -54,40 +54,40 @@ public class AjaxController {
 		
 		// System.out.println(member);
 		
-		// JSON Çü½ÄÀ¸·Î Member°´Ã¼ ÀÛ¼º
-		// {"memberEmail" : "user01@kh.or.kr", "memberNickname" : "À¯ÀúÀÏ"}
+		// JSON í˜•ì‹ìœ¼ë¡œ Memberê°ì²´ ì‘ì„±
+		// {"memberEmail" : "user01@kh.or.kr", "memberNickname" : "ìœ ì €ì¼"}
 		// String result = "{\"memberEmail\" : \"user01@kh.or.kr\", \"memberNickname\" : \"123\"}";
 		// return result;
 		
-		// GSON ¶óÀÌºê·¯¸®¸¦ ÀÌ¿ëÇØ¼­ Member°´Ã¼ -> JSON º¯È¯ (String)
+		// GSON ë¼ì´ë¸ŒëŸ¬ë¦¬ë¥¼ ì´ìš©í•´ì„œ Memberê°ì²´ -> JSON ë³€í™˜ (String)
 		return new Gson().toJson(member);
 	}
 	
-//	// ÀÌ¸ŞÀÏ·Î È¸¿ø Á¤º¸ Á¶È¸(jackson-databind È°¿ë)
+//	// ì´ë©”ì¼ë¡œ íšŒì› ì •ë³´ ì¡°íšŒ(jackson-databind í™œìš©)
 //		@PostMapping("/selectEmail")
 //		@ResponseBody
 //		public Member selectEmail(String email) {
 //			
-//			// jacksonÀÌ¶õ?
-//			// JS°´Ã¼ <-> Java°´Ã¼ <-> JSON
+//			// jacksonì´ë€?
+//			// JSê°ì²´ <-> Javaê°ì²´ <-> JSON
 //			
 //			Member member = service.selectEmail(email);
 //			
 //			return member; 
-//			// Java°´Ã¼ ¹İÈ¯ ½Ã Jackson ¶óÀÌºê·¯¸®°¡ JS°´Ã¼·Î ¹İÈ¯
+//			// Javaê°ì²´ ë°˜í™˜ ì‹œ Jackson ë¼ì´ë¸ŒëŸ¬ë¦¬ê°€ JSê°ì²´ë¡œ ë°˜í™˜
 //		
 //		}
 	
 	
-	// È¸¿ø ¸ñ·Ï Á¶È¸ 
+	// íšŒì› ëª©ë¡ ì¡°íšŒ 
 	@GetMapping("/selectMemberList")
 	@ResponseBody
 	public String selectMemberList() {
 		
 		List<Member> memberList = service.selectMemberList();
 		
-		// °´Ã¼ 1°³¸¦ Ç¥Çö == JSON
-		// °´Ã¼ ¿©·¯°³°¡ ´ã±ä ¹è¿­ == JSONArray
+		// ê°ì²´ 1ê°œë¥¼ í‘œí˜„ == JSON
+		// ê°ì²´ ì—¬ëŸ¬ê°œê°€ ë‹´ê¸´ ë°°ì—´ == JSONArray
 		// "[{},{},{}]"
 		
 		return new Gson().toJson(memberList);

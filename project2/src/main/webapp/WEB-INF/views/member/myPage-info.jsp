@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="/resources/css/main-style.css">
     <link rel="stylesheet" href="/resources/css/myPage-style.css">
 
-     <!-- fontawesome 사이트 아이콘 허용 -->
+    <!-- fontawesome 사이트 아이콘 허용 -->
     <script src="https://kit.fontawesome.com/f7459b8054.js" crossorigin="anonymous"></script>
     
 </head>

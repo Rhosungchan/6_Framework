@@ -7,19 +7,19 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 
-// ¿¹¿Ü Ã³¸®¿ë ÄÁÆ®·Ñ·¯
+// ì˜ˆì™¸ ì²˜ë¦¬ìš© ì»¨íŠ¸ë¡¤ëŸ¬
 @ControllerAdvice
 public class ExceptionController {
 
 	
-	// ÇÁ·ÎÁ§Æ® ³»ºÎ¿¡¼­ ¹ß»ıÇÏ´Â ¸ğµç ¿¹¿Ü Ã³¸®
+	// í”„ë¡œì íŠ¸ ë‚´ë¶€ì—ì„œ ë°œìƒí•˜ëŠ” ëª¨ë“  ì˜ˆì™¸ ì²˜ë¦¬
  	@ExceptionHandler(Exception.class)
 	public String exceptionHandler(Exception e, Model model) {
 		
-		// ¸Å°³º¯¼ö Exception e : ¹ß»ıÇÑ ¿¹¿Ü Àü´Ş ¹Ş´Â ¸Å°³º¯¼ö
+		// ë§¤ê°œë³€ìˆ˜ Exception e : ë°œìƒí•œ ì˜ˆì™¸ ì „ë‹¬ ë°›ëŠ” ë§¤ê°œë³€ìˆ˜
 		e.printStackTrace();
 		
-		model.addAttribute("errorMessage","¼­ºñ½º ÀÌ¿ë Áß ¹®Á¦°¡ ¹ß»ıÇÏ¿´½À´Ï´Ù.");
+		model.addAttribute("errorMessage","ì„œë¹„ìŠ¤ ì´ìš© ì¤‘ ë¬¸ì œê°€ ë°œìƒí•˜ì˜€ìŠµë‹ˆë‹¤.");
 		model.addAttribute("e",e);
 		
 		return "common/error";
@@ -27,14 +27,14 @@ public class ExceptionController {
  	
  	
  	
- 	// ¿¹¿Ü º°·Î ³ª´²¼­µµ Ã³¸® °¡´É ============================================
+ 	// ì˜ˆì™¸ ë³„ë¡œ ë‚˜ëˆ ì„œë„ ì²˜ë¦¬ ê°€ëŠ¥ ============================================
 // 	@ExceptionHandler(SQLException.class)
 // 	public String exceptionHandler(Exception e, Model model) {
 // 		
-// 		// ¸Å°³º¯¼ö Exception e : ¹ß»ıÇÑ ¿¹¿Ü Àü´Ş ¹Ş´Â ¸Å°³º¯¼ö
+// 		// ë§¤ê°œë³€ìˆ˜ Exception e : ë°œìƒí•œ ì˜ˆì™¸ ì „ë‹¬ ë°›ëŠ” ë§¤ê°œë³€ìˆ˜
 // 		e.printStackTrace();
 // 		
-// 		model.addAttribute("errorMessage","¼­ºñ½º ÀÌ¿ë Áß ¹®Á¦°¡ ¹ß»ıÇÏ¿´½À´Ï´Ù.");
+// 		model.addAttribute("errorMessage","ì„œë¹„ìŠ¤ ì´ìš© ì¤‘ ë¬¸ì œê°€ ë°œìƒí•˜ì˜€ìŠµë‹ˆë‹¤.");
 // 		model.addAttribute("e",e);
 // 		
 // 		return "common/error";
@@ -42,10 +42,10 @@ public class ExceptionController {
 // 	@ExceptionHandler(RuntimeException.class)
 // 	public String exceptionHandler(Exception e, Model model) {
 // 		
-// 		// ¸Å°³º¯¼ö Exception e : ¹ß»ıÇÑ ¿¹¿Ü Àü´Ş ¹Ş´Â ¸Å°³º¯¼ö
+// 		// ë§¤ê°œë³€ìˆ˜ Exception e : ë°œìƒí•œ ì˜ˆì™¸ ì „ë‹¬ ë°›ëŠ” ë§¤ê°œë³€ìˆ˜
 // 		e.printStackTrace();
 // 		
-// 		model.addAttribute("errorMessage","¼­ºñ½º ÀÌ¿ë Áß ¹®Á¦°¡ ¹ß»ıÇÏ¿´½À´Ï´Ù.");
+// 		model.addAttribute("errorMessage","ì„œë¹„ìŠ¤ ì´ìš© ì¤‘ ë¬¸ì œê°€ ë°œìƒí•˜ì˜€ìŠµë‹ˆë‹¤.");
 // 		model.addAttribute("e",e);
 // 		
 // 		return "common/error";

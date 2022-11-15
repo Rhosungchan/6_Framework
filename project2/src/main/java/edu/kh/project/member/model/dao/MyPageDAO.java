@@ -8,15 +8,15 @@ import org.springframework.stereotype.Repository;
 
 import edu.kh.project.member.model.vo.Member;
 
-@Repository // ½ºÇÁ¸µÀÌ bean µî·Ï + °ü¸®(IOC)
+@Repository // ìŠ¤í”„ë§ì´ bean ë“±ë¡ + ê´€ë¦¬(IOC)
 public class MyPageDAO {
 
-		@Autowired // ½ºÇÁ¸µÀ¸·ÎºÎÅÍ beanÀ» ÁÖÀÔ ¹ŞÀ½(DI)
+		@Autowired // ìŠ¤í”„ë§ìœ¼ë¡œë¶€í„° beanì„ ì£¼ì… ë°›ìŒ(DI)
 		private SqlSessionTemplate sqlSession;
 
 		
 		
-		/** È¸¿ø Á¤º¸ ¼öÁ¤ DAO
+		/** íšŒì› ì •ë³´ ìˆ˜ì • DAO
 		 * @param inputMember
 		 * @return result
 		 */
@@ -27,7 +27,7 @@ public class MyPageDAO {
 
 
 
-		/** ¾ÏÈ£È­µÈ ºñ¹Ğ¹øÈ£ Á¶È¸ DAO
+		/** ì•”í˜¸í™”ëœ ë¹„ë°€ë²ˆí˜¸ ì¡°íšŒ DAO
 		 * @param memberNo
 		 * @return encPw
 		 */
@@ -38,7 +38,7 @@ public class MyPageDAO {
 
 
 
-		/** ºñ¹Ğ¹øÈ£ º¯°æ DAO
+		/** ë¹„ë°€ë²ˆí˜¸ ë³€ê²½ DAO
 		 * @param paramMap
 		 * @return result
 		 */
@@ -48,12 +48,22 @@ public class MyPageDAO {
 
 
 
-		/** È¸¿ø Å»Åğ DAO
+		/** íšŒì› íƒˆí‡´ DAO
 		 * @param memberNo
 		 * @return result
 		 */
 		public int memberDelete(int memberNo) {
 			return sqlSession.update("myPageMapper.memberDelete", memberNo);
+		}
+
+
+		/** í”„ë¡œí•„ ì´ë¯¸ì§€ ìˆ˜ì • DAO
+		 * @param loginMember
+		 * @return
+		 */
+		public int updateProfile(Member loginMember) {
+			
+			return sqlSession.update("myPageMapper.updateProfile", loginMember);
 		}
 
 

@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-// lombok ∂Û¿Ã∫Í∑Ø∏Æ
+// lombok ÎùºÏù¥Î∏åÎü¨Î¶¨
 @NoArgsConstructor
 @Getter
 @Setter
@@ -22,3 +22,4 @@ public class Member {
    private String memberDeleteFlag;
    private int authority;
 }
+

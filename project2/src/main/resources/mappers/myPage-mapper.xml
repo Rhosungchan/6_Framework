@@ -54,4 +54,14 @@
 	</update>
 	<!-- 파라미터가 Map인 경우 key 값만 작성하면 값을 얻어옴 -->
 	
+	
+	<!-- 프로필 이미지 수정 -->
+	<update id="updateProfile">
+		UPDATE "MEMBER" SET
+		PROFILE_IMG = #{profileImage}
+		WHERE MEMBER_NO = #{memberNo}
+	</update>
+	
+	
+	
 </mapper>

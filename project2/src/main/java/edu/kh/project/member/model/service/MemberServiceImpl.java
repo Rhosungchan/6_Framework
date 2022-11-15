@@ -9,53 +9,53 @@ import edu.kh.project.member.model.dao.MemberDAO;
 import edu.kh.project.member.model.vo.Member;
 
 
-// @Service()          => bean µî·Ï ½Ã ÀÌ¸§À» Å¬·¡½º¸íÀ¸·Î µî·Ï (memberServiceImpl)
-// @Service("ÀÌ¸§")    => bean µî·Ï ½Ã ÀÌ¸§À» ÁöÁ¤µÈ ÀÌ¸§À¸·Î µî·Ï
+// @Service()          => bean ë“±ë¡ ì‹œ ì´ë¦„ì„ í´ë˜ìŠ¤ëª…ìœ¼ë¡œ ë“±ë¡ (memberServiceImpl)
+// @Service("ì´ë¦„")    => bean ë“±ë¡ ì‹œ ì´ë¦„ì„ ì§€ì •ëœ ì´ë¦„ìœ¼ë¡œ ë“±ë¡
 
-@Service()  // Service ·¹ÀÌ¾î, ºñÁî´Ï½º ·ÎÁ÷À» °¡Áø Å¬·¡½ºÀÓÀ» ¸í½Ã + bean µî·Ï
+@Service()  // Service ë ˆì´ì–´, ë¹„ì¦ˆë‹ˆìŠ¤ ë¡œì§ì„ ê°€ì§„ í´ë˜ìŠ¤ì„ì„ ëª…ì‹œ + bean ë“±ë¡
 public class MemberServiceImpl implements MemberService{
 
-	// MemberDAO beanÀ» ÀÇÁ¸¼º ÁÖÀÔ(DI)
+	// MemberDAO beanì„ ì˜ì¡´ì„± ì£¼ì…(DI)
 	@Autowired
 	private MemberDAO dao;
 	
 	
-	// spring-security.xml¿¡¼­ µî·ÏÇÑ beanÀ» ÀÇÁ¸¼º ÁÖÀÔ(DI)
+	// spring-security.xmlì—ì„œ ë“±ë¡í•œ beanì„ ì˜ì¡´ì„± ì£¼ì…(DI)
 	@Autowired
 	private BCryptPasswordEncoder bcrypt;
 	
 	
-	// ·Î±×ÀÎ ¼­ºñ½º
+	// ë¡œê·¸ì¸ ì„œë¹„ìŠ¤
 	@Override
 	public Member login(Member inputMember) {
 
-//		System.out.println("ÀÔ·ÂÇÑ ºñ¹Ğ¹øÈ£ : " + inputMember.getMemberPw());
-//		System.out.println("¾ÏÈ£È­ ºñ¹Ğ¹øÈ£ : " + bcrypt.encode(inputMember.getMemberPw()));
+//		System.out.println("ì…ë ¥í•œ ë¹„ë°€ë²ˆí˜¸ : " + inputMember.getMemberPw());
+//		System.out.println("ì•”í˜¸í™” ë¹„ë°€ë²ˆí˜¸ : " + bcrypt.encode(inputMember.getMemberPw()));
 		
 		
 		
-		// bcrypt ÀÌ¿ë ½Ã ·Î±×ÀÎ ¹æ¹ı
+		// bcrypt ì´ìš© ì‹œ ë¡œê·¸ì¸ ë°©ë²•
 		
-		// 1. ÀÌ¸ŞÀÏÀÌ ÀÏÄ¡ÇÏ´Â È¸¿ø Á¤º¸¸¦ DB¿¡¼­ Á¶È¸
-		//    ¹İµå½Ã ºñ¹Ğ¹øÈ£(MEMBER_PW) Æ÷ÇÔµÇ¾î¾ß ÇÔ.
+		// 1. ì´ë©”ì¼ì´ ì¼ì¹˜í•˜ëŠ” íšŒì› ì •ë³´ë¥¼ DBì—ì„œ ì¡°íšŒ
+		//    ë°˜ë“œì‹œ ë¹„ë°€ë²ˆí˜¸(MEMBER_PW) í¬í•¨ë˜ì–´ì•¼ í•¨.
 		
 		Member loginMember = dao.login(inputMember.getMemberEmail()); 
 		
-		// 2. ÀÔ·Â ¹ŞÀº ºñ¹Ğ¹øÈ£ (Æò¹®)
-		//    Á¶È¸ÇÑ ¾ÏÈ£È­µÈ ºñ¹Ğ¹øÈ£ ºñ±³
-		//    -> BCryptPasswordEncoder.matchs(Æò¹®, ¾ÏÈ£¹®) ÀÌ¿ë 
-		//       -> °°À¸¸é true, ¾Æ´Ï¸é false
+		// 2. ì…ë ¥ ë°›ì€ ë¹„ë°€ë²ˆí˜¸ (í‰ë¬¸)
+		//    ì¡°íšŒí•œ ì•”í˜¸í™”ëœ ë¹„ë°€ë²ˆí˜¸ ë¹„êµ
+		//    -> BCryptPasswordEncoder.matchs(í‰ë¬¸, ì•”í˜¸ë¬¸) ì´ìš© 
+		//       -> ê°™ìœ¼ë©´ true, ì•„ë‹ˆë©´ false
 		
 		
-		if(loginMember != null) {	// ¾ÆÀÌµğ Á¤»ó ÀÔ·Â
+		if(loginMember != null) {	// ì•„ì´ë”” ì •ìƒ ì…ë ¥
 			
 			if(bcrypt.matches(inputMember.getMemberPw(), loginMember.getMemberPw())) {
-				// 3-1. ºñ¹Ğ¹øÈ£°¡ ÀÏÄ¡ÇÏ¸é Á¶È¸µÈ È¸¿ø Á¤º¸ ¹İÈ¯
-				//      ´Ü, ºñ¹Ğ¹øÈ£´Â Á¦°Å
+				// 3-1. ë¹„ë°€ë²ˆí˜¸ê°€ ì¼ì¹˜í•˜ë©´ ì¡°íšŒëœ íšŒì› ì •ë³´ ë°˜í™˜
+				//      ë‹¨, ë¹„ë°€ë²ˆí˜¸ëŠ” ì œê±°
 				loginMember.setMemberPw(null);
 				
 			} else {
-				// 3-2. ºñ¹Ğ¹øÈ£°¡ ÀÏÄ¡ÇÏÁö ¾ÊÀ¸¸é nullÀ» ¹İÈ¯
+				// 3-2. ë¹„ë°€ë²ˆí˜¸ê°€ ì¼ì¹˜í•˜ì§€ ì•Šìœ¼ë©´ nullì„ ë°˜í™˜
 				loginMember = null;
 			}
 		}
@@ -65,38 +65,38 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	/*
-	 	[ ½ºÇÁ¸µ¿¡¼­ Æ®·£Àè¼ÇÀ» Ã³¸®ÇÏ´Â ¹æ¹ı ] 
+	 	[ ìŠ¤í”„ë§ì—ì„œ íŠ¸ëœì­ì…˜ì„ ì²˜ë¦¬í•˜ëŠ” ë°©ë²• ] 
 	
-	 	- ¼±¾ğÀû Æ®·£Àè¼Ç Ã³¸® 
-	 	  1) <tx:advice>¸¦ ÀÌ¿ëÇÑ XML ÀÛ¼º ¹æ¹ı
-	 	  2) @Transactional ¾î³ëÅ×ÀÌ¼Ç ÀÛ¼º ¹æ¹ı
-	 	      = Å¬·¡½º, ¸Ş¼­µå À§¿¡ ÀÛ¼º   
-	          = Á¶°Ç : AOP¸¦ ÀÌ¿ëÇÑ ±â¼ú -> Service Interface ÇÊ¿ä
-	                   Æ®·£Àè¼Ç ¸Å´ÏÀú°¡ beanÀ¸·Î µî·ÏµÇ¾î ÀÖ¾î¾ß ÇÔ.
+	 	- ì„ ì–¸ì  íŠ¸ëœì­ì…˜ ì²˜ë¦¬ 
+	 	  1) <tx:advice>ë¥¼ ì´ìš©í•œ XML ì‘ì„± ë°©ë²•
+	 	  2) @Transactional ì–´ë…¸í…Œì´ì…˜ ì‘ì„± ë°©ë²•
+	 	      = í´ë˜ìŠ¤, ë©”ì„œë“œ ìœ„ì— ì‘ì„±   
+	          = ì¡°ê±´ : AOPë¥¼ ì´ìš©í•œ ê¸°ìˆ  -> Service Interface í•„ìš”
+	                   íŠ¸ëœì­ì…˜ ë§¤ë‹ˆì €ê°€ beanìœ¼ë¡œ ë“±ë¡ë˜ì–´ ìˆì–´ì•¼ í•¨.
 	                   (root-context.xml)
 	                   
-        @Transactional ¾î³ëÅ×ÀÌ¼Ç Æ¯Â¡
-        - ¿¹¿Ü°¡ ¹ß»ıÇÑ °æ¿ì rollback ÀÚµ¿ ÁøÇà
-        - ¿¹¿ÜÀÇ ±âº»°ªÀº RuntimeException
-          => SQL ÁøÇà ½Ã ¹ß»ıÇÏ´Â ¿¹¿Ü == SQLException(RuntimeException ÇüÁ¦)
-                                          (´ÙÇü¼º Àû¿ë X)
-          => ´Ù¸¥ ¿¹¿Ü¿¡µµ rollbackÀÌ ÁøÇàµÇ°í ½Í´Ù¸é 
-             rollbackFor = ¿¡¿Ü Å¬·¡½º ÀÛ¼ºÇÏ¸é µÈ´Ù.    
+        @Transactional ì–´ë…¸í…Œì´ì…˜ íŠ¹ì§•
+        - ì˜ˆì™¸ê°€ ë°œìƒí•œ ê²½ìš° rollback ìë™ ì§„í–‰
+        - ì˜ˆì™¸ì˜ ê¸°ë³¸ê°’ì€ RuntimeException
+          => SQL ì§„í–‰ ì‹œ ë°œìƒí•˜ëŠ” ì˜ˆì™¸ == SQLException(RuntimeException í˜•ì œ)
+                                          (ë‹¤í˜•ì„± ì ìš© X)
+          => ë‹¤ë¥¸ ì˜ˆì™¸ì—ë„ rollbackì´ ì§„í–‰ë˜ê³  ì‹¶ë‹¤ë©´ 
+             rollbackFor = ì—ì™¸ í´ë˜ìŠ¤ ì‘ì„±í•˜ë©´ ëœë‹¤.    
 	 
 	 */ 
 	
 	
 	
-	// È¸¿ø°¡ÀÔ ¼­ºñ½º 
-	@Transactional(rollbackFor = Exception.class) // ¸ğµç ¿¹¿Ü ¹ß»ı ½Ã ·Ñ¹é 
+	// íšŒì›ê°€ì… ì„œë¹„ìŠ¤ 
+	@Transactional(rollbackFor = Exception.class) // ëª¨ë“  ì˜ˆì™¸ ë°œìƒ ì‹œ ë¡¤ë°± 
 	@Override
 	public int signUp(Member inputMember) {
 		
-		// ºñ¹Ğ ¹øÈ£ ¾ÏÈ£È­
+		// ë¹„ë°€ ë²ˆí˜¸ ì•”í˜¸í™”
 		String emcPw = bcrypt.encode(inputMember.getMemberPw());
 		inputMember.setMemberPw(emcPw);
 		
-		// DAO È£Ãâ ÈÄ °á°ú ¹İÈ¯ ¹Ş±â
+		// DAO í˜¸ì¶œ í›„ ê²°ê³¼ ë°˜í™˜ ë°›ê¸°
 		int result = dao.signUp(inputMember);
 		
 		return result;

@@ -5,23 +5,23 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-// Controller ¾î³ëÅ×ÀÌ¼Ç : ÄÄÆÄÀÏ·¯¿¡°Ô ÇöÀç Å¬·¡½º°¡ ControllerÀÓÀ» ¾Ë·ÁÁÜ
-//                          + bean µî·Ï (SpringÀÌ °´Ã¼·Î ¸¸µé¾î¼­ °ü¸®)
+// Controller ì–´ë…¸í…Œì´ì…˜ : ì»´íŒŒì¼ëŸ¬ì—ê²Œ í˜„ì¬ í´ë˜ìŠ¤ê°€ Controllerì„ì„ ì•Œë ¤ì¤Œ
+//                          + bean ë“±ë¡ (Springì´ ê°ì²´ë¡œ ë§Œë“¤ì–´ì„œ ê´€ë¦¬)
 @Controller
 public class MainController {
 	
-	// forward ½Ã ControllerÀÇ ¹İÈ¯ÇüÀº 
-	// String ¶Ç´Â ModelAndView µÑ Áß ÇÏ³ªÀÌ´Ù.
+	// forward ì‹œ Controllerì˜ ë°˜í™˜í˜•ì€ 
+	// String ë˜ëŠ” ModelAndView ë‘˜ ì¤‘ í•˜ë‚˜ì´ë‹¤.
 	
-	// GET ¹æ½Ä "/"·Î ¿äÃ»ÀÌ ¿À¸é ÇØ´ç ¸Ş¼­µå¿¡¼­ Ã³¸®
+	// GET ë°©ì‹ "/"ë¡œ ìš”ì²­ì´ ì˜¤ë©´ í•´ë‹¹ ë©”ì„œë“œì—ì„œ ì²˜ë¦¬
 		// == Handler Mapping
 		@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String mainPage() {
 		
-			// ¸ŞÀÎ ÆäÀÌÁö ¿äÃ»½Ã ÇÊ¿äÇÑ ÄÚµå ÀÛ¼º...
+			// ë©”ì¸ í˜ì´ì§€ ìš”ì²­ì‹œ í•„ìš”í•œ ì½”ë“œ ì‘ì„±...
 			
-			// [ forward ¹æ¹ı ]
- 			// - View ResolverÀÇ prefix / suffix¸¦ Á¦¿ÜÇÑ jsp °æ·Î¸¦ ÀÛ¼º 
+			// [ forward ë°©ë²• ]
+ 			// - View Resolverì˜ prefix / suffixë¥¼ ì œì™¸í•œ jsp ê²½ë¡œë¥¼ ì‘ì„± 
 			
 			// /WEB-INF/views/common/main.jsp
 			// prefix : /WEB-INF/views/

@@ -3,28 +3,28 @@ package edu.kh.project.member.model.service;
 import edu.kh.project.member.model.vo.Member;
 
 /*
- 	Service Interface »ç¿ë ÀÌÀ¯
+ 	Service Interface ì‚¬ìš© ì´ìœ 
  	
- 	1. ÇÁ·ÎÁ§Æ®¿¡ ±ÔÄ¢¼ºÀ» ºÎ¿©ÇÏ±â À§ÇØ¼­ 
+ 	1. í”„ë¡œì íŠ¸ì— ê·œì¹™ì„±ì„ ë¶€ì—¬í•˜ê¸° ìœ„í•´ì„œ 
  	
- 	2. Å¬·¡½º°£ÀÇ °áÇÕµµ¸¦ ¾àÈ­½ÃÅ°±â À§ÇÔ 
-  	   --> À¯Áö º¸¼ö¼º Çâ»ó(°´Ã¼ÁöÇâÀû ¼³°è)	
+ 	2. í´ë˜ìŠ¤ê°„ì˜ ê²°í•©ë„ë¥¼ ì•½í™”ì‹œí‚¤ê¸° ìœ„í•¨ 
+  	   --> ìœ ì§€ ë³´ìˆ˜ì„± í–¥ìƒ(ê°ì²´ì§€í–¥ì  ì„¤ê³„)	
   	   
-   	3. AOP¸¦ »ç¿ëÇÏ±â À§ÇÔ 
-   	   --> spring-proxy¸¦ ÀÌ¿ëÇÏ¾ß AOP ÄÚµå°¡ µ¿ÀÛÇÏ´Âµ¥ 
-   	       ÀÌ spring-proxy´Â Service ÀÎÅÍÆäÀÌ½º¸¦ »ó¼Ó¹Ş¾Æ µ¿ÀÛ 
+   	3. AOPë¥¼ ì‚¬ìš©í•˜ê¸° ìœ„í•¨ 
+   	   --> spring-proxyë¥¼ ì´ìš©í•˜ì•¼ AOP ì½”ë“œê°€ ë™ì‘í•˜ëŠ”ë° 
+   	       ì´ spring-proxyëŠ” Service ì¸í„°í˜ì´ìŠ¤ë¥¼ ìƒì†ë°›ì•„ ë™ì‘ 
   	
  */
 public interface MemberService {
 
-	/** ·Î±×ÀÎ ¼­ºñ½º
+	/** ë¡œê·¸ì¸ ì„œë¹„ìŠ¤
 	 * @param inputMember(Email / Pw)
 	 * @return loginMember
 	 */
 	public abstract Member login(Member inputMember);
 
 	
-	/** È¸¿ø °¡ÀÔ ¼­ºñ½º
+	/** íšŒì› ê°€ì… ì„œë¹„ìŠ¤
 	 * @param inputMember
 	 * @return result
 	 */

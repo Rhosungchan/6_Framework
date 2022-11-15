@@ -3,32 +3,42 @@ package edu.kh.project.member.model.service;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.multipart.MultipartFile;
 
 import edu.kh.project.member.model.vo.Member;
 
-// ¼³°èÀûÀÎ ¸ñÀû + À¯Áöº¸¼ö Çâ»ó + AOP ±â´É »ç¿ë 
+// ì„¤ê³„ì ì¸ ëª©ì  + ìœ ì§€ë³´ìˆ˜ í–¥ìƒ + AOP ê¸°ëŠ¥ ì‚¬ìš© 
 public interface MyPageService {
 
 
 	
-	/* È¸¿ø Á¤º¸ ¼öÁ¤ ¼­ºñ½º
+	/* íšŒì› ì •ë³´ ìˆ˜ì • ì„œë¹„ìŠ¤
 	 * @param inputMember
 	 * @return result
 	 */
 	/* public abstract */ int updateInfo(Member inputMember);
 
-	/** ºñ¹Ğ¹øÈ£ ¼öÁ¤ ¼­ºñ½º
+	/** ë¹„ë°€ë²ˆí˜¸ ìˆ˜ì • ì„œë¹„ìŠ¤
 	 * @param paramMap
 	 * @return
 	 */
 	int changePw(Map<String, Object> paramMap);
 
-	/** È¸¿ø Å»Åğ ¼­ºñ½º 
+	/** íšŒì› íƒˆí‡´ ì„œë¹„ìŠ¤ 
 	 * @param memberNo
 	 * @param memberPw
 	 * @return
 	 */
-	int memberDelete(int memberNo, String memberPw); 
+	int memberDelete(int memberNo, String memberPw);
+
+	/** í”„ë¡œí•„ ì´ë¯¸ì§€ ìˆ˜ì • ì„œë¹„ìŠ¤
+	 * @param webPath
+	 * @param filePath
+	 * @param profileImage
+	 * @param loginMember
+	 * @return
+	 */
+	int updateProfile(String webPath, String filePath, MultipartFile profileImage, Member loginMember) throws Exception; 
 	
 	
 	

@@ -24,42 +24,42 @@ import edu.kh.project.member.model.service.MemberService;
 import edu.kh.project.member.model.service.MemberServiceImpl;
 import edu.kh.project.member.model.vo.Member;
 
-// È¸¿ø °ü·Ã ¿äÃ»À» ¹ŞÀº Controller
-// Controller : ÇÁ·¹Á¨Å×ÀÌ¼Ç ·¹ÀÌ¾î
-//              À¥ ¾ÖÇÃ¸®ÄÉÀÌ¼ÇÀ¸·Î Àü´Ş ¹ŞÀº Å¬¶óÀÌ¾ğÆ®ÀÇ ¿äÃ»À»
-//              ¾Ë¸ÂÀº ¼­ºñ½º·Î ¿¬°áÇÏ°í ¼­ºñ½º¿¡¼­ ¹İÈ¯µÈ °á°ú¿¡ µû¶ó
-//              ¾Ë¸ÂÀº È­¸éÀ¸·Î ÀÀ´äÇÏ´Â ¹æ¹ıÀ» Á¦¾îÇÏ´Â ¿ªÇÒ 
+// íšŒì› ê´€ë ¨ ìš”ì²­ì„ ë°›ì€ Controller
+// Controller : í”„ë ˆì  í…Œì´ì…˜ ë ˆì´ì–´
+//              ì›¹ ì• í”Œë¦¬ì¼€ì´ì…˜ìœ¼ë¡œ ì „ë‹¬ ë°›ì€ í´ë¼ì´ì–¸íŠ¸ì˜ ìš”ì²­ì„
+//              ì•Œë§ì€ ì„œë¹„ìŠ¤ë¡œ ì—°ê²°í•˜ê³  ì„œë¹„ìŠ¤ì—ì„œ ë°˜í™˜ëœ ê²°ê³¼ì— ë”°ë¼
+//              ì•Œë§ì€ í™”ë©´ìœ¼ë¡œ ì‘ë‹µí•˜ëŠ” ë°©ë²•ì„ ì œì–´í•˜ëŠ” ì—­í•  
 
-// Controller ¾î³ëÅ×ÀÌ¼Ç : ÄÄÆÄÀÏ·¯¿¡°Ô ÇöÀç Å¬·¡½º°¡ ControllerÀÓÀ» ¾Ë·ÁÁÜ
-// + bean µî·Ï (SpringÀÌ °´Ã¼·Î ¸¸µé¾î¼­ °ü¸®)
+// Controller ì–´ë…¸í…Œì´ì…˜ : ì»´íŒŒì¼ëŸ¬ì—ê²Œ í˜„ì¬ í´ë˜ìŠ¤ê°€ Controllerì„ì„ ì•Œë ¤ì¤Œ
+// + bean ë“±ë¡ (Springì´ ê°ì²´ë¡œ ë§Œë“¤ì–´ì„œ ê´€ë¦¬)
 
 @Controller
 @SessionAttributes({"loginMember","message","test2"})
-// -> Model¿¡ Ãß°¡µÈ ¼Ó¼º Áß key°¡ ÀÏÄ¡ÇÏ´Â ¼Ó¼ºÀ» session scope ¼Ó¼ºÀ¸·Î Ãß°¡
+// -> Modelì— ì¶”ê°€ëœ ì†ì„± ì¤‘ keyê°€ ì¼ì¹˜í•˜ëŠ” ì†ì„±ì„ session scope ì†ì„±ìœ¼ë¡œ ì¶”ê°€
 public class MemberController {
 
-	// * °ø¿ëÀ¸·Î »ç¿ëÇÒ Service °´Ã¼ »ı¼º 
+	// * ê³µìš©ìœ¼ë¡œ ì‚¬ìš©í•  Service ê°ì²´ ìƒì„± 
 	
 	// @Autowired
-	// bean scanningÀ» ÅëÇØ beanÀ¸·Î µî·ÏµÈ °´Ã¼ Áß 
-	// ¾Ë¸ÂÀº °´Ã¼¸¦ DI(ÀÇÁ¸¼º ÁÖÀÔ)ÇØÁÖ´Â ¾î³ëÅ×ÀÌ¼Ç
+	// bean scanningì„ í†µí•´ beanìœ¼ë¡œ ë“±ë¡ëœ ê°ì²´ ì¤‘ 
+	// ì•Œë§ì€ ê°ì²´ë¥¼ DI(ì˜ì¡´ì„± ì£¼ì…)í•´ì£¼ëŠ” ì–´ë…¸í…Œì´ì…˜
 
-	// ÀÚµ¿ ¿¬°á ±ÔÄ¢ :  Å¸ÀÔÀÌ °°°Å³ª »ó¼Ó °ü°èÀÎ beanÀ» ÀÚµ¿À¸·Î DI
+	// ìë™ ì—°ê²° ê·œì¹™ :  íƒ€ì…ì´ ê°™ê±°ë‚˜ ìƒì† ê´€ê³„ì¸ beanì„ ìë™ìœ¼ë¡œ DI
 	
 	@Autowired
 	private MemberService service;
 	
-	//	@RequestMapping : Å¬¶óÀÌ¾ğÆ®ÀÇ ¿äÃ»À» Ã³¸®ÇÒ Å¬·¡½º/¸Ş¼­µå¸¦ ÁöÁ¤ÇÏ´Â ¾î³ëÅ×ÀÌ¼Ç
+	//	@RequestMapping : í´ë¼ì´ì–¸íŠ¸ì˜ ìš”ì²­ì„ ì²˜ë¦¬í•  í´ë˜ìŠ¤/ë©”ì„œë“œë¥¼ ì§€ì •í•˜ëŠ” ì–´ë…¸í…Œì´ì…˜
 	// == Handler Mapping
 	
 	
-	// ** ÆÄ¶ó¹ÌÅÍ¸¦ Àü´Ş ¹Ş´Â ¹æ¹ı
-	// 1. HttpServletRequest¸¦ ÀÌ¿ëÇÏ´Â ¹æ¹ı
+	// ** íŒŒë¼ë¯¸í„°ë¥¼ ì „ë‹¬ ë°›ëŠ” ë°©ë²•
+	// 1. HttpServletRequestë¥¼ ì´ìš©í•˜ëŠ” ë°©ë²•
 	
 	
-	// ·Î±×ÀÎ ¿äÃ»(POST)
+	// ë¡œê·¸ì¸ ìš”ì²­(POST)
 	// @RequestMapping(value="/member/login", method = RequestMethod.POST)
-	// ¾ê¤Ó
+	// ì–˜ã…£
 	public String login(HttpServletRequest req) {
 
 		String inputEmail = req.getParameter("inputEmail");
@@ -69,28 +69,28 @@ public class MemberController {
 		System.out.println(inputPw);
 		
 		
-		// * forward  ¹æ¹ı : prefix / suffix¸¦ Á¦¿ÜÇÑ ³ª¸ÓÁö jsp°æ·Î 
-		// * redirect ¹æ¹ı : "redirect : ¿äÃ»ÁÖ¼Ò";  
+		// * forward  ë°©ë²• : prefix / suffixë¥¼ ì œì™¸í•œ ë‚˜ë¨¸ì§€ jspê²½ë¡œ 
+		// * redirect ë°©ë²• : "redirect : ìš”ì²­ì£¼ì†Œ";  
 		return "redirect:/" ;
 	}
 	
 	
-	// 2.@RequestParam ¾î³ëÅ×ÀÌ¼Ç »ç¿ë 
-	// - ¸Ş¼­µå ¸Å°³º¯¼ö¿¡ Àü´Ş¹ŞÀº ÆÄ¶ó¹ÌÅÍ¸¦ ÁÖÀÔÇÏ´Â ¾î³ëÅ×ÀÌ¼Ç
+	// 2.@RequestParam ì–´ë…¸í…Œì´ì…˜ ì‚¬ìš© 
+	// - ë©”ì„œë“œ ë§¤ê°œë³€ìˆ˜ì— ì „ë‹¬ë°›ì€ íŒŒë¼ë¯¸í„°ë¥¼ ì£¼ì…í•˜ëŠ” ì–´ë…¸í…Œì´ì…˜
 	
-	// [¼Ó¼º]
-	   // value : Àü´Ş ¹ŞÀº input ÅÂ±×ÀÇ name ¼Ó¼º°ª
+	// [ì†ì„±]
+	   // value : ì „ë‹¬ ë°›ì€ input íƒœê·¸ì˜ name ì†ì„±ê°’
 	   
-	   // required : ÀÔ·ÂµÈ name ¼Ó¼º°ª ÆÄ¶ó¹ÌÅÍ ÇÊ¼ö ¿©ºÎ ÁöÁ¤(±âº»°ª true)
-	   // -> required = trueÀÎ ÆÄ¶ó¹ÌÅÍ°¡ Á¸ÀçÇÏÁö ¾Ê´Â´Ù¸é 400 Bad Request ¿¡·¯ ¹ß»ı
-	   // -> required = trueÀÎ ÆÄ¶ó¹ÌÅÍ°¡ nullÀÎ °æ¿ì¿¡µµ 400 Bad Request
-	   // -> required = falseÀÎ °æ¿ì Àü´ŞµÈ ÆÄ¶ó¹ÌÅÍ°¡ ¾øÀ¸¸é null
+	   // required : ì…ë ¥ëœ name ì†ì„±ê°’ íŒŒë¼ë¯¸í„° í•„ìˆ˜ ì—¬ë¶€ ì§€ì •(ê¸°ë³¸ê°’ true)
+	   // -> required = trueì¸ íŒŒë¼ë¯¸í„°ê°€ ì¡´ì¬í•˜ì§€ ì•ŠëŠ”ë‹¤ë©´ 400 Bad Request ì—ëŸ¬ ë°œìƒ
+	   // -> required = trueì¸ íŒŒë¼ë¯¸í„°ê°€ nullì¸ ê²½ìš°ì—ë„ 400 Bad Request
+	   // -> required = falseì¸ ê²½ìš° ì „ë‹¬ëœ íŒŒë¼ë¯¸í„°ê°€ ì—†ìœ¼ë©´ null
 	
-	   // defaultValue : ÆÄ¶ó¹ÌÅÍ Áß ÀÏÄ¡ÇÏ´Â name ¼Ó¼º °ªÀÌ ¾øÀ» °æ¿ì¿¡ ´ëÀÔÇÒ °ª ÁöÁ¤.
-	   // -> required = falseÀÎ °æ¿ì »ç¿ë
+	   // defaultValue : íŒŒë¼ë¯¸í„° ì¤‘ ì¼ì¹˜í•˜ëŠ” name ì†ì„± ê°’ì´ ì—†ì„ ê²½ìš°ì— ëŒ€ì…í•  ê°’ ì§€ì •.
+	   // -> required = falseì¸ ê²½ìš° ì‚¬ìš©
 	
-	   // * @RequestParam »ı·«ÇÏ±â * 
-	   // Á¶°Ç : ¸Å°³ º¯¼ö ÀÌ¸§ == input name ¼Ó¼º °ª
+	   // * @RequestParam ìƒëµí•˜ê¸° * 
+	   // ì¡°ê±´ : ë§¤ê°œ ë³€ìˆ˜ ì´ë¦„ == input name ì†ì„± ê°’
 	
 	
 //	@RequestMapping(value="/member/login", method = RequestMethod.POST)
@@ -105,7 +105,7 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
-//	@RequestParam »ı·«À» ÀÌ¿ëÇØ¼­ Âª°Ô ÄÚµå ÀÛ¼º °¡´É 
+//	@RequestParam ìƒëµì„ ì´ìš©í•´ì„œ ì§§ê²Œ ì½”ë“œ ì‘ì„± ê°€ëŠ¥ 
 //	@RequestMapping(value="/member/login", method = RequestMethod.POST)
 	public String login( String inputEmail, String inputPw) {
 		
@@ -119,120 +119,120 @@ public class MemberController {
 	
 	// 
 	// == @PostMapping(value="/member/login", method=RequestMethod.POST)
-//	@PostMapping("/member/login") // POST ¹æ½ÄÀÇ /member/login ¿äÃ»À» ¿¬°á
-//	@GetMapping("/member/login")  // GET ¹æ½ÄÀÇ /member/login ¿äÃ»À» ¿¬°á
+//	@PostMapping("/member/login") // POST ë°©ì‹ì˜ /member/login ìš”ì²­ì„ ì—°ê²°
+//	@GetMapping("/member/login")  // GET ë°©ì‹ì˜ /member/login ìš”ì²­ì„ ì—°ê²°
 	
 	
 //	---------------------------------------------------------------------2022.10.25
-	// 3. @ModelAttribute ¾î³ëÅ×ÀÌ¼Ç »ç¿ë
+	// 3. @ModelAttribute ì–´ë…¸í…Œì´ì…˜ ì‚¬ìš©
 	
-	// [ÀÛ¼º¹ı]
-	// - @ModelAttribute VOÅ¸ÀÔ ¸Å°³ º¯¼ö¸í
-	// -> ÆÄ¶ó¹ÌÅÍÀÇ name ¼Ó¼º °ªÀÌ ÁöÁ¤µÈ VOÀÇ ÇÊµå¸í°ú °°´Ù¸é 
-	//    ÇØ´ç VOÀÇ °´Ã¼ÀÇ ÇÊµå¿¡ ÆÄ¶ó¹ÌÅÍ¸¦ ¼¼ÆÃ
+	// [ì‘ì„±ë²•]
+	// - @ModelAttribute VOíƒ€ì… ë§¤ê°œ ë³€ìˆ˜ëª…
+	// -> íŒŒë¼ë¯¸í„°ì˜ name ì†ì„± ê°’ì´ ì§€ì •ëœ VOì˜ í•„ë“œëª…ê³¼ ê°™ë‹¤ë©´ 
+	//    í•´ë‹¹ VOì˜ ê°ì²´ì˜ í•„ë“œì— íŒŒë¼ë¯¸í„°ë¥¼ ì„¸íŒ…
 	
-	// [Á¶°Ç]
-	// 1. name ¼Ó¼º °ª°ú ÇÊµå ¸íÀÌ °°¾Æ¾ß ÇÔ.
-	// 2. VO¿¡ ¹İµå½Ã ±âº» »ı¼ºÀÚ°¡ Á¸ÀçÇØ¾ß ÇÔ.
-	// 3. VO¿¡ ¹İµå½Ã setter°¡ Á¸ÀçÇØ¾ß ÇÔ.
+	// [ì¡°ê±´]
+	// 1. name ì†ì„± ê°’ê³¼ í•„ë“œ ëª…ì´ ê°™ì•„ì•¼ í•¨.
+	// 2. VOì— ë°˜ë“œì‹œ ê¸°ë³¸ ìƒì„±ìê°€ ì¡´ì¬í•´ì•¼ í•¨.
+	// 3. VOì— ë°˜ë“œì‹œ setterê°€ ì¡´ì¬í•´ì•¼ í•¨.
 	
 	
-	// * @ModelAttribute ¾î³ëÅ×ÀÌ¼Ç »ı·«µµ °¡´É!
-	// == Ä¿¸Çµå °´Ã¼ 
+	// * @ModelAttribute ì–´ë…¸í…Œì´ì…˜ ìƒëµë„ ê°€ëŠ¥!
+	// == ì»¤ë§¨ë“œ ê°ì²´ 
 	
-	// ******Âü°í******
-	// Controller ¸Ş¼­µå ¸Å°³º¯¼ö¿¡ °´Ä¡¸¦ ÀÛ¼ºÇÏ¸é 
-	// ÀÚµ¿À¸·Î »ı¼ºµÇ°Å³ª ¾ò¾î¿Ã ¼ö ÀÖ´Â ÀÌÀ¯
-	// -> Spring Container¿¡¼­ Argument Resolver(¸Å°³º¯¼ö ÇØ°á»ç) Á¦°øÇØ¼­
-	//    À¯¿¬ÇÏ°Ô Ã³¸®ÇÔ 
+	// ******ì°¸ê³ ******
+	// Controller ë©”ì„œë“œ ë§¤ê°œë³€ìˆ˜ì— ê°ì¹˜ë¥¼ ì‘ì„±í•˜ë©´ 
+	// ìë™ìœ¼ë¡œ ìƒì„±ë˜ê±°ë‚˜ ì–»ì–´ì˜¬ ìˆ˜ ìˆëŠ” ì´ìœ 
+	// -> Spring Containerì—ì„œ Argument Resolver(ë§¤ê°œë³€ìˆ˜ í•´ê²°ì‚¬) ì œê³µí•´ì„œ
+	//    ìœ ì—°í•˜ê²Œ ì²˜ë¦¬í•¨ 
 	
 	@PostMapping("/member/login")
 	public String login(/* @ModelAttribute */ Member inputMember, Model model, RedirectAttributes ra, 
-			             @RequestParam(value="saveId", required=false) String saveId, // Ã¼Å©¹Ú½º °ª ¾ò¾î¿À±â
-			             HttpServletResponse resp, // ÄíÅ° Àü´Ş¿ë
+			             @RequestParam(value="saveId", required=false) String saveId, // ì²´í¬ë°•ìŠ¤ ê°’ ì–»ì–´ì˜¤ê¸°
+			             HttpServletResponse resp, // ì¿ í‚¤ ì „ë‹¬ìš©
 			             @RequestHeader(value="referer") String referer) // 
 						 {
 						 
 		
-		// Model : µ¥ÀÌÅÍ Àü´Ş¿ë °´Ã¼ 
-		//         - µ¥ÀÌÅÍ¸¦ MapÇü½ÄÀ¸·Î ÀúÀåÇÏ¿© Àü´ŞÇÏ´Â °´Ã¼
-		//         - request scope°¡ ±âº»°ª
-		//           + @SessionAttribute ¾î³ëÅ×ÀÌ¼Ç°ú ÇÔ²² ÀÛ¼º ½Ã 
-		//              session scope¿À º¯È¯ °¡´É
+		// Model : ë°ì´í„° ì „ë‹¬ìš© ê°ì²´ 
+		//         - ë°ì´í„°ë¥¼ Mapí˜•ì‹ìœ¼ë¡œ ì €ì¥í•˜ì—¬ ì „ë‹¬í•˜ëŠ” ê°ì²´
+		//         - request scopeê°€ ê¸°ë³¸ê°’
+		//           + @SessionAttribute ì–´ë…¸í…Œì´ì…˜ê³¼ í•¨ê»˜ ì‘ì„± ì‹œ 
+		//              session scopeì˜¤ ë³€í™˜ ê°€ëŠ¥
 		
 		// RedirectAttributes
-		// - ¸®´ÙÀÌ·ºÆ® ½Ã °ªÀ» Àü´ŞÇÏ´Â ¿ëµµÀÇ °´Ã¼
-		// - ÀÀ´ä Àü : request scope
-		// - redirect Áß : session scope
-		// - ÀÀ´ä ÈÄ : request scope
+		// - ë¦¬ë‹¤ì´ë ‰íŠ¸ ì‹œ ê°’ì„ ì „ë‹¬í•˜ëŠ” ìš©ë„ì˜ ê°ì²´
+		// - ì‘ë‹µ ì „ : request scope
+		// - redirect ì¤‘ : session scope
+		// - ì‘ë‹µ í›„ : request scope
 		
 		
-		// [ Servlet ÇÁ·ÎÁ§Æ® ] 
-		// Service °´Ã¼ »ı¼º 
-		// try ~catch ³»ºÎ¿¡ ÄÚµå ÀÛ¼º
+		// [ Servlet í”„ë¡œì íŠ¸ ] 
+		// Service ê°ì²´ ìƒì„± 
+		// try ~catch ë‚´ë¶€ì— ì½”ë“œ ì‘ì„±
 		
 		
-		// [ Spring ÇÁ·ÎÁ§Æ® ]
+		// [ Spring í”„ë¡œì íŠ¸ ]
 		
 		
-		// ¼­ºñ½º È£Ãâ ÈÄ °á°ú ¹İÈ¯ ¹Ş±â
+		// ì„œë¹„ìŠ¤ í˜¸ì¶œ í›„ ê²°ê³¼ ë°˜í™˜ ë°›ê¸°
 		Member loginMember = service.login(inputMember);
 		
-		String path = null; // ¸®´ÙÀÌ·ºÆ® °æ·Î¸¦ ÀúÀåÇÒ º¯¼ö
+		String path = null; // ë¦¬ë‹¤ì´ë ‰íŠ¸ ê²½ë¡œë¥¼ ì €ì¥í•  ë³€ìˆ˜
 		
 		if(loginMember != null) {
 			
-			path = "/"; // ¸ŞÀÎ ÆäÀÌÁö
+			path = "/"; // ë©”ì¸ í˜ì´ì§€
 			
-			// ·Î±×ÀÎ ¼º°ø ½Ã loginMember¸¦ ¼¼¼Ç¿¡ Ãß°¡ 
+			// ë¡œê·¸ì¸ ì„±ê³µ ì‹œ loginMemberë¥¼ ì„¸ì…˜ì— ì¶”ê°€ 
 			
 			// addAttribute("k", V)  == req.setAttribute("K",V)
 			model.addAttribute("loginMember", loginMember);
-			// -> request scope »óÅÂ
+			// -> request scope ìƒíƒœ
 			
-			// @SessionAttribute("loginMember")Å¬·¡½º À§¿¡ Ãß°¡
-			//  ->session scope·Î º¯È¯
+			// @SessionAttribute("loginMember")í´ë˜ìŠ¤ ìœ„ì— ì¶”ê°€
+			//  ->session scopeë¡œ ë³€í™˜
 			
 			//=============================================================
-			// ÄíÅ° »ı¼º
+			// ì¿ í‚¤ ìƒì„±
 			Cookie cookie = new Cookie("saveId", loginMember.getMemberEmail());
 			
-			if(saveId != null) { // Ã¼Å© µÇ¾úÀ» ¶§
+			if(saveId != null) { // ì²´í¬ ë˜ì—ˆì„ ë•Œ
 				
-				// 1³âµ¿¾È ÄíÅ° À¯Áö
+				// 1ë…„ë™ì•ˆ ì¿ í‚¤ ìœ ì§€
 				cookie.setMaxAge(60*60*24*365);
 				
 				
-			} else { // Ã¼Å© ¾ÈµÇ¾úÀ» ¶§
-				// 0ÃÊ µ¿¾È ÄíÅ° À¯Áö -> »ı¼º°ú µ¿½Ã¿¡ »èÁ¦ 
-				// -> Å¬¶óÀÌ¾ğÆ®ÀÇ ÄíÅ° ÆÄÀÏÀ» »èÁ¦ 
+			} else { // ì²´í¬ ì•ˆë˜ì—ˆì„ ë•Œ
+				// 0ì´ˆ ë™ì•ˆ ì¿ í‚¤ ìœ ì§€ -> ìƒì„±ê³¼ ë™ì‹œì— ì‚­ì œ 
+				// -> í´ë¼ì´ì–¸íŠ¸ì˜ ì¿ í‚¤ íŒŒì¼ì„ ì‚­ì œ 
 				cookie.setMaxAge(0);
 				
 			}
-			// ÄíÅ°°¡ »ç¿ëµÇ´Â °æ·Î ÁöÁ¤ 
-			cookie.setPath("/"); // localhost ¹Ø¿¡ ¸ğµç °æ·Î¿¡¼­ »ç¿ë 
+			// ì¿ í‚¤ê°€ ì‚¬ìš©ë˜ëŠ” ê²½ë¡œ ì§€ì • 
+			cookie.setPath("/"); // localhost ë°‘ì— ëª¨ë“  ê²½ë¡œì—ì„œ ì‚¬ìš© 
 			
-			// »ı¼ºµÈ ÄíÅ°¸¦ ÀÀ´ä °´Ã¼¿¡ ´ã¾Æ¼­ Å¬¶óÀÌ¾ğÆ®¿¡°Ô Àü´Ş
+			// ìƒì„±ëœ ì¿ í‚¤ë¥¼ ì‘ë‹µ ê°ì²´ì— ë‹´ì•„ì„œ í´ë¼ì´ì–¸íŠ¸ì—ê²Œ ì „ë‹¬
 			resp.addCookie(cookie);
 			
 			//=============================================================
 		} else {
-			// ±âÁ¸ : HttpServletRequest req;
+			// ê¸°ì¡´ : HttpServletRequest req;
 			//        req.getHeader("referer");
 			// new : @RequestHeader(value="referer") String referer
 			//       path = referer;
 			
-			path = referer; // ·Î±×ÀÎ ¿äÃ» Àü ÆäÀÌÁö ÁÖ¼Ò(referer)
+			path = referer; // ë¡œê·¸ì¸ ìš”ì²­ ì „ í˜ì´ì§€ ì£¼ì†Œ(referer)
 			
 			
-			// ·Î±×ÀÎ ½ÇÆĞ ½Ã "¾ÆÀÌµğ ¶Ç´Â ºñ¹Ğ¹øÈ£°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù." ¼¼¼Ç¿¡ Ãß°¡
-			// model.addAttribute("message","¾ÆÀÌµğ ¶Ç´Â ºñ¹Ğ¹øÈ£°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.");
-			// -> ¸ŞÀÎ ÆäÀÌÁö ÁÖ¼Ò¿¡ message °ª ³ëÃâ
-			// -> RedirectAttributes·Î º¯È¯
+			// ë¡œê·¸ì¸ ì‹¤íŒ¨ ì‹œ "ì•„ì´ë”” ë˜ëŠ” ë¹„ë°€ë²ˆí˜¸ê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤." ì„¸ì…˜ì— ì¶”ê°€
+			// model.addAttribute("message","ì•„ì´ë”” ë˜ëŠ” ë¹„ë°€ë²ˆí˜¸ê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
+			// -> ë©”ì¸ í˜ì´ì§€ ì£¼ì†Œì— message ê°’ ë…¸ì¶œ
+			// -> RedirectAttributesë¡œ ë³€í™˜
 		    
-			ra.addFlashAttribute("message","¾ÆÀÌµğ ¶Ç´Â ºñ¹Ğ¹øÈ£°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.");
+			ra.addFlashAttribute("message","ì•„ì´ë”” ë˜ëŠ” ë¹„ë°€ë²ˆí˜¸ê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 			
-			// addFlashAttribute() : Àá±ñ session scope¿¡ Ãß°¡
+			// addFlashAttribute() : ì ê¹ session scopeì— ì¶”ê°€
 		}
 		
 		
@@ -240,25 +240,25 @@ public class MemberController {
 		return "redirect:" + path;
 	}
 	
-	// ·Î±×ÀÎ ÆäÀÌÁö ÀÌµ¿ 
+	// ë¡œê·¸ì¸ í˜ì´ì§€ ì´ë™ 
 	@GetMapping("/member/login")
 	public String loginPage() {
 		
 		return "member/login";
 	}
 	
-	// ·Î±×¾Æ¿ô 
+	// ë¡œê·¸ì•„ì›ƒ 
 	@GetMapping("/member/logout")
 	public String logout(SessionStatus status) {
 		
-		// ±âÁ¸ : 
+		// ê¸°ì¡´ : 
 		// HttpServletRequest req;
 		// HttpSession session = req.getSession();
 		// session.invalidate();
-		// ¾ÈµÊ.... Why? @SessionAttibute·Î session scope¿¡ µî·ÏµÈ °ªÀ» ¹«È¿È­ ½ÃÅ°·Á¸é
-		//               SessionStatus¶ó´Â º°µµÀÇ °´Ã¼¸¦ ÀÌ¿ëÇØ¾ß ÇÑ´Ù.
+		// ì•ˆë¨.... Why? @SessionAttibuteë¡œ session scopeì— ë“±ë¡ëœ ê°’ì„ ë¬´íš¨í™” ì‹œí‚¤ë ¤ë©´
+		//               SessionStatusë¼ëŠ” ë³„ë„ì˜ ê°ì²´ë¥¼ ì´ìš©í•´ì•¼ í•œë‹¤.
 		
-		status.setComplete(); // ¼¼¼Ç ¹«È¿È­
+		status.setComplete(); // ì„¸ì…˜ ë¬´íš¨í™”
 	
 		
 		
@@ -266,56 +266,56 @@ public class MemberController {
 	}
 	
 
-	// È¸¿ø °¡ÀÔ ÆäÀÌÁö
+	// íšŒì› ê°€ì… í˜ì´ì§€
 		@GetMapping("/member/signUp")
 		public String signUpPage() {
 			return "member/signUp";
 		}
 	
-	// È¸¿ø  °¡ÀÔ 
+	// íšŒì›  ê°€ì… 
 	@PostMapping("/member/signUp")
-	public String signUp(Member inputMember /*Ä¿¸Çµå °´Ã¼*/, 
-		                 String[] memberAddress/*name ¼Ó¼º °ªÀÌ memberAddressÀÎ °ªÀ» ¹è¿­·Î ¹İÈ¯ */,
+	public String signUp(Member inputMember /*ì»¤ë§¨ë“œ ê°ì²´*/, 
+		                 String[] memberAddress/*name ì†ì„± ê°’ì´ memberAddressì¸ ê°’ì„ ë°°ì—´ë¡œ ë°˜í™˜ */,
 		                 RedirectAttributes ra, 
 		                 @RequestHeader("referer") String referer) {
 		
-		// ÇÑ±ÛÀÌ ±úÁö´Â ÀÌÀ¯ 
-		// -> POST ¿äÃ» ½Ã ÀÎÄÚµù Ã³¸® ÇÊ¿ä -> ÀÎÄÚµù ÇÊÅÍ Ã³¸®(web.xml)
+		// í•œê¸€ì´ ê¹¨ì§€ëŠ” ì´ìœ  
+		// -> POST ìš”ì²­ ì‹œ ì¸ì½”ë”© ì²˜ë¦¬ í•„ìš” -> ì¸ì½”ë”© í•„í„° ì²˜ë¦¬(web.xml)
 		
-		// SpringÀº 
-		// 1) °°Àº name ¼Ó¼ºÀ» °¡Áø input ÅÂ±×ÀÇ °ªÀ» 
-		//    °ª, °ª, °ª, .... ÀÚµ¿À¸·Î ÇÏ³ªÀÇ ¹®ÀÚ¿­·Î ¸¸µé¾îÁÜ.
+		// Springì€ 
+		// 1) ê°™ì€ name ì†ì„±ì„ ê°€ì§„ input íƒœê·¸ì˜ ê°’ì„ 
+		//    ê°’, ê°’, ê°’, .... ìë™ìœ¼ë¡œ í•˜ë‚˜ì˜ ë¬¸ìì—´ë¡œ ë§Œë“¤ì–´ì¤Œ.
 		
-		// 2) input type="text"ÀÇ °ªÀÌ ÀÛ¼ºµÇÁö ¾ÊÀº °æ¿ì
-		//    nullÀÌ ¾Æ´Ñ ºóÄ­("")À¸·Î °ªÀ» ¾ò¾î¿Â´Ù.
+		// 2) input type="text"ì˜ ê°’ì´ ì‘ì„±ë˜ì§€ ì•Šì€ ê²½ìš°
+		//    nullì´ ì•„ë‹Œ ë¹ˆì¹¸("")ìœ¼ë¡œ ê°’ì„ ì–»ì–´ì˜¨ë‹¤.
 		
-		// ÁÖ¼Ò°¡ ÀÛ¼ºµÇÁö ¾ÊÀº °æ¿ì == null
+		// ì£¼ì†Œê°€ ì‘ì„±ë˜ì§€ ì•Šì€ ê²½ìš° == null
 		if(inputMember.getMemberAddress().equals(",,")) {
 			
 			inputMember.setMemberAddress(null);
 			
-		// ÁÖ¼Ò°¡ ÀÛ¼ºµÈ °æ¿ì ==> ÁÖ¼Ò,,ÁÖ¼Ò,,ÁÖ¼Ò
+		// ì£¼ì†Œê°€ ì‘ì„±ëœ ê²½ìš° ==> ì£¼ì†Œ,,ì£¼ì†Œ,,ì£¼ì†Œ
 		} else {
 			inputMember.setMemberAddress(String.join(",,", memberAddress));
 		}
 		
-		// ¼­ºñ½º È£Ãâ ÈÄ °á°ú ¹İÈ¯ ¹Ş±â
+		// ì„œë¹„ìŠ¤ í˜¸ì¶œ í›„ ê²°ê³¼ ë°˜í™˜ ë°›ê¸°
 		int result = service.signUp(inputMember);
 		
-		String path = null; // ¸®´ÙÀÌ·ºÆ® °æ·Î ÁöÁ¤ 
-		String message = null; // Àü´ŞÇÒ ¸Ş¼¼Áö ÀúÀå º¯¼ö 
+		String path = null; // ë¦¬ë‹¤ì´ë ‰íŠ¸ ê²½ë¡œ ì§€ì • 
+		String message = null; // ì „ë‹¬í•  ë©”ì„¸ì§€ ì €ì¥ ë³€ìˆ˜ 
 		
 		
-		if(result > 0) { // ¼º°ø ½Ã
+		if(result > 0) { // ì„±ê³µ ì‹œ
 			path="/";
-			message = "È¸¿ø°¡ÀÔ ¼º°ø";
+			message = "íšŒì›ê°€ì… ì„±ê³µ";
 			
-		} else {  // ½ÇÆĞ ½Ã
+		} else {  // ì‹¤íŒ¨ ì‹œ
 			path=referer;
-			message = "È¸¿ø°¡ÀÔ ½ÇÆĞ...";
+			message = "íšŒì›ê°€ì… ì‹¤íŒ¨...";
 			
-			// ÀÌÀü ÆäÀÌÁö·Î µ¹¾Æ°¬À» ¶§ ÀÔ·ÂÇß´ø °ªÀ» °°ÀÌ Àü´Ş
-			inputMember.setMemberPw(null); // ºñ¹Ğ¹øÈ£ »èÁ¦ 
+			// ì´ì „ í˜ì´ì§€ë¡œ ëŒì•„ê°”ì„ ë•Œ ì…ë ¥í–ˆë˜ ê°’ì„ ê°™ì´ ì „ë‹¬
+			inputMember.setMemberPw(null); // ë¹„ë°€ë²ˆí˜¸ ì‚­ì œ 
 			ra.addFlashAttribute("tempMember",inputMember);
 		}
 		
@@ -326,33 +326,33 @@ public class MemberController {
 	}
 	
 	/*        ========================================================================================
-	 		     [ ½ºÇÁ¸µ ¿¹¿Ü Ã³¸® ¹æ¹ı ] (3Á¾·ù, Áßº¹ »ç¿ë °¡´É)
+	 		     [ ìŠ¤í”„ë§ ì˜ˆì™¸ ì²˜ë¦¬ ë°©ë²• ] (3ì¢…ë¥˜, ì¤‘ë³µ ì‚¬ìš© ê°€ëŠ¥)
 	 			 
 	 			 	
-	 			 1¼øÀ§ : try-catch / throws ¿¹¿Ü Ã³¸® ±¸¹® 
-	 			         -> ¸Ş¼­µå ´ÜÀ§ Ã³¸® 
+	 			 1ìˆœìœ„ : try-catch / throws ì˜ˆì™¸ ì²˜ë¦¬ êµ¬ë¬¸ 
+	 			         -> ë©”ì„œë“œ ë‹¨ìœ„ ì²˜ë¦¬ 
 	 			         
 	 			         
-	 			 2¼øÀ§ : @ExceptionHandler ¾î³ëÅ×ÀÌ¼Ç
-	 			         -> Å¬·¡½º ´ÜÀ§ Ã³¸® 
-	 			            - ÇÏ³ªÀÇ ÄÁÆ®·Ñ·¯¿¡¼­ ¹ß»ıÇÏ´Â ¿¹¿Ü¸¦ ÇÏ³ªÀÇ ¸Ş¼­µå¿¡ ¸ğ¾Æ¼­ Ã³¸®
+	 			 2ìˆœìœ„ : @ExceptionHandler ì–´ë…¸í…Œì´ì…˜
+	 			         -> í´ë˜ìŠ¤ ë‹¨ìœ„ ì²˜ë¦¬ 
+	 			            - í•˜ë‚˜ì˜ ì»¨íŠ¸ë¡¤ëŸ¬ì—ì„œ ë°œìƒí•˜ëŠ” ì˜ˆì™¸ë¥¼ í•˜ë‚˜ì˜ ë©”ì„œë“œì— ëª¨ì•„ì„œ ì²˜ë¦¬
 	 			 
 	 			 
-	 			 3¼øÀ§ : @ControllerAdvice ¾î³ëÅ×ÀÌ¼Ç 
-	 			         -> Àü¿ª(À¥ ¾ÖÇÃ¸®ÄÉÀÌ¼Ç)¿¡¼­ ¹ß»ıÇÏ´Â ¿¹¿Ü¸¦ ¸ğ¾Æ¼­ Ã³¸®
-	 			            - º°µµÀÇ Å¬·¡½º·Î ÀÛ¼º 
+	 			 3ìˆœìœ„ : @ControllerAdvice ì–´ë…¸í…Œì´ì…˜ 
+	 			         -> ì „ì—­(ì›¹ ì• í”Œë¦¬ì¼€ì´ì…˜)ì—ì„œ ë°œìƒí•˜ëŠ” ì˜ˆì™¸ë¥¼ ëª¨ì•„ì„œ ì²˜ë¦¬
+	 			            - ë³„ë„ì˜ í´ë˜ìŠ¤ë¡œ ì‘ì„± 
 	 			 
 	          ========================================================================================
 	 */ 
 	
-	// MemberController¿¡¼­ ¹ß»ıÇÏ´Â ¿¹¿Ü¸¦ ¸ğ¾Æ¼­ Ã³¸®
+	// MemberControllerì—ì„œ ë°œìƒí•˜ëŠ” ì˜ˆì™¸ë¥¼ ëª¨ì•„ì„œ ì²˜ë¦¬
 //	@ExceptionHandler(Exception.class)
 	public String exceptionHandler(Exception e, Model model) {
 		
-		// ¸Å°³º¯¼ö Exception e : ¹ß»ıÇÑ ¿¹¿Ü Àü´Ş ¹Ş´Â ¸Å°³º¯¼ö
+		// ë§¤ê°œë³€ìˆ˜ Exception e : ë°œìƒí•œ ì˜ˆì™¸ ì „ë‹¬ ë°›ëŠ” ë§¤ê°œë³€ìˆ˜
 		e.printStackTrace();
 		
-		model.addAttribute("errorMessage","È¸¿ø°ü·Ã ¼­ºñ½º ÀÌ¿ë Áß ¹®Á¦°¡ ¹ß»ıÇÏ¿´½À´Ï´Ù.");
+		model.addAttribute("errorMessage","íšŒì›ê´€ë ¨ ì„œë¹„ìŠ¤ ì´ìš© ì¤‘ ë¬¸ì œê°€ ë°œìƒí•˜ì˜€ìŠµë‹ˆë‹¤.");
 		model.addAttribute("e",e);
 		
 		return "common/error";
