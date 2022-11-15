@@ -52,14 +52,13 @@ public class MemberController {
 	//	@RequestMapping : 클라이언트의 요청을 처리할 클래스/메서드를 지정하는 어노테이션
 	// == Handler Mapping
 	
-	
+
 	// ** 파라미터를 전달 받는 방법
 	// 1. HttpServletRequest를 이용하는 방법
 	
 	
 	// 로그인 요청(POST)
-	// @RequestMapping(value="/member/login", method = RequestMethod.POST)
-	// 얘ㅣ
+	// @RequestMapping(value="/member/login", method = RequestMethod.POST)ㅣ
 	public String login(HttpServletRequest req) {
 
 		String inputEmail = req.getParameter("inputEmail");
