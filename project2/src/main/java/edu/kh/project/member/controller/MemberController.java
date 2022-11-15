@@ -34,7 +34,7 @@ import edu.kh.project.member.model.vo.Member;
 // + bean 등록 (Spring이 객체로 만들어서 관리)
 
 @Controller
-@SessionAttributes({"loginMember","message","test2"})
+@SessionAttributes({"loginMember","message"})
 // -> Model에 추가된 속성 중 key가 일치하는 속성을 session scope 속성으로 추가
 public class MemberController {
 
@@ -140,7 +140,7 @@ public class MemberController {
 	// == 커맨드 객체 
 	
 	// ******참고******
-	// Controller 메서드 매개변수에 객치를 작성하면 
+	// Controller 메서드 매개변수에 객체를 작성하면 
 	// 자동으로 생성되거나 얻어올 수 있는 이유
 	// -> Spring Container에서 Argument Resolver(매개변수 해결사) 제공해서
 	//    유연하게 처리함 
@@ -157,7 +157,7 @@ public class MemberController {
 		//         - 데이터를 Map형식으로 저장하여 전달하는 객체
 		//         - request scope가 기본값
 		//           + @SessionAttribute 어노테이션과 함께 작성 시 
-		//              session scope오 변환 가능
+		//              session scope로 변환 가능
 		
 		// RedirectAttributes
 		// - 리다이렉트 시 값을 전달하는 용도의 객체
