@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import edu.kh.project.board.model.service.BoardService;
 
 // 인터셉터(Intercepetor) 
+// 사용을 위해 servlet-context 작성 및 등록
 // 클라이언트 <-> 필터 <-> Dispatcher Servlet <-> 인터셉터 <-> 컨트롤러
 
 // Dispatcher Servlet <-> controller 사이에 

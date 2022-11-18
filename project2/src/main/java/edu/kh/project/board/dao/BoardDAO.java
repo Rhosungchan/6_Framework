@@ -54,5 +54,13 @@ public class BoardDAO {
 		                            //                              파라미터가 없을 경우 null 대입 
 		                            //                              RowBounds가 항상 3번째에 올 수 있도록 한다.
 	}
+
+	/** 게시글 상세 조회 + 이미지 목록 조회 + 댓글 목록 조회
+	 * @param boardNo
+	 * @return
+	 */
+	public Board selectBoardDetail(int boardNo) {
+		return sqlSession.selectOne("boardMapper.selectBoardDetail",boardNo);
+	}
 	
 }
