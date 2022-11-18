@@ -131,7 +131,6 @@
 	SELECT  * FROM BOARD_IMG
 	WHERE  BOARD_NO = #{boardNo}
 	ORDER BY IMG_ORDER
-
 </select>
 
 <!-- 특정 게시글의 댓글 목록 조회 -->
