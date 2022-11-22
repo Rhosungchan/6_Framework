@@ -179,11 +179,12 @@
   </delete>
   
   <!-- 게시글 삭제 -->
-  <update id="boardDelete" parameterType="_int">
-	  UPDATE BOARD SET
-	  BOARD_DEL_FL = 'Y'
-		WHERE BOARD_NO = #{boardNo}
-  </update>
+	<update id="boardDelete" parameterType="_int">
+	UPDATE BOARD SET
+	BOARD_DEL_FL = 'Y'
+	WHERE BOARD_NO = #{boardNo}
+	</update>
+  
   
   <!-- 게시글 삽입 -->
   <!-- 

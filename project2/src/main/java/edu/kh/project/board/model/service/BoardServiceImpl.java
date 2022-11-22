@@ -93,6 +93,7 @@ public class BoardServiceImpl implements BoardService {
 	public int boardDelete(int boardNo) {
 		return dao.boardDelete(boardNo);
 	}
+	
 
 	// 게시글 삽입
 //	@Transactional : 예외 발생 시 서비스 내에서 수행한 모든 DML 롤백 
@@ -181,6 +182,7 @@ public class BoardServiceImpl implements BoardService {
 		
 		return boardNo;
 	}
+
 
 	
 //	@Transactional // 단일 메서드를 호출해서 사용할 경우 사용하지 않아도됨

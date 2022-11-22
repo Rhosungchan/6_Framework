@@ -113,14 +113,15 @@ public class BoardDAO {
 	}
 
 	
-	/** 게시글 삭제
+	/** 게시글 삭제 
 	 * @param boardNo
-	 * @return
+	 * @return result
 	 */
 	public int boardDelete(int boardNo) {
 		return sqlSession.update("boardMapper.boardDelete",boardNo);
 	}
-
+	
+	
 	/** 게시글 삽입
 	 * @param board
 	 * @return boardNo
@@ -144,6 +145,8 @@ public class BoardDAO {
 	public int insertBoardImageList(List<BoardImage> boardImageList) {
 		return sqlSession.insert("boardMapper.insertBoardImageList", boardImageList);
 	}
+
+	
 
     
     

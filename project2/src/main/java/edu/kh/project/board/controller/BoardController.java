@@ -276,41 +276,51 @@ public class BoardController {
 	
 	
 	
+	//----------------------------------------------------------------------------------
 	// 게시글 삭제
 	@GetMapping("/board/{boardCode}/{boardNo}/delete")
-	public String boardDelete(@RequestHeader("referer") String referer,  RedirectAttributes ra,
-							  @PathVariable("boardNo") int boardNo, 
-							  @PathVariable("boardCode") int boardCode) {
+	public String boardDelete(@RequestHeader("referer") String referer, 
+							  @PathVariable("boardNo") int boardNo,
+							  @PathVariable("boardCode") int boardCode,
+							  RedirectAttributes ra) {
+							  
+			
 		
 		// 게시글 번호를 이용해서 게시글을 삭제(BOARD_DEL_FL = 'Y' 수정)
 		int result = service.boardDelete(boardNo);
 		
-		String path = null; // 리다이렉트 경로 지정 
-		String message = null; // 전달할 메세지 저장 변수 
+		String path = null;
+		String message = null;
 		
 		if(result > 0) {
 			
 			// 성공 시 : "삭제되었습니다" 메세지 전달
 			// 해당 게시판 목록 1페이지로 리다이렉트
-			 path = "/board/"+boardCode;
-			 message = "삭제되었습니다";
-					 
+			
+			path = "/board/" + boardCode;
+			message = "삭제되었습니다.";
+			
+			
 		} else {
 			
 			// 실패 시 : "게시글 삭제 실패" 메세지 전달
 			// 요청 이전 주소(referer)로 리다이렉트
-			 path = referer;
-			 message = "게시글 삭제 실패";
+			
+			path = referer;
+			message = "게시글 삭제 실패";
+			
 		}
 		
-		ra.addFlashAttribute("message",message);
-		
+		ra.addFlashAttribute("message", message);
 		return "redirect:"+path;
-				
+		
+		
 	}
+		
 	
 	
 	
+	//----------------------------------------------------------------------------------
 	// 게시글 작성 페이지 이동 
 	@GetMapping("/write/{boardCode}")
 	public String boardWrite(@PathVariable("boardCode") int boardCode) {

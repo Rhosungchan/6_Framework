@@ -60,12 +60,13 @@ public interface BoardService {
 	int boardLikeDown(Map<String, Object> paramMap);
 
 	
-	
-	/** 게시글 삭제 
+	/** 게시글 삭제
 	 * @param boardNo
-	 * @return
+	 * @return result
 	 */
-	int boardDelete(int boardNo);
+	int boardDelete(int boardNo); 
+	
+	
 
 	/** 게시글 삽입 
 	 * @param board
@@ -74,7 +75,8 @@ public interface BoardService {
 	 * @param folderPath
 	 * @return boardNo
 	 */
-	int boardWrite(Board board, List<MultipartFile> imageList, String webPath, String folderPath) throws IOException; 
+	int boardWrite(Board board, List<MultipartFile> imageList, String webPath, String folderPath) throws IOException;
+
 	
 	
 	
