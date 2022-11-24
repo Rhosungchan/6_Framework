@@ -79,6 +79,19 @@ public interface BoardService {
 
 	
 	
+	/** 게시글 수정 
+	 * @param board
+	 * @param imageList
+	 * @param webPath
+	 * @param folderPath
+	 * @param deleteList
+	 * @return result
+	 * @throws Exception
+	 */
+	int boardUpdate(Board board, List<MultipartFile> imageList, String webPath, String folderPath, String deleteList) throws Exception;
+
+	
+	
 	
 	
 	
