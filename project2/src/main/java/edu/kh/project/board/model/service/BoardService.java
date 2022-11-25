@@ -91,6 +91,14 @@ public interface BoardService {
 	int boardUpdate(Board board, List<MultipartFile> imageList, String webPath, String folderPath, String deleteList) throws Exception;
 
 	
+	/** 게시글 검색 
+	 * @param pm
+	 * @param cp
+	 * @return map
+	 */
+	Map<String, Object> selectBoardList(Map<String, Object> pm, int cp);
+
+	
 	
 	
 	
